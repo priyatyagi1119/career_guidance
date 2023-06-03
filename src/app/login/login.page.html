@@ -1,0 +1,313 @@
+<ion-header>
+  <ion-toolbar>
+       
+    <ion-title>
+      <ion-icon name="medal-outline"size="medium"color="tertiary"></ion-icon>
+      CareerGuidence
+    </ion-title>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ 
+    <div *ngIf="caseno==0" class="home-card">
+      
+     <img src="assets\icon\images\logo2.png"class="img1">
+
+ 
+    <h1>Welcome...</h1>
+    <p>We are here to help you to find right Career Path for you</p>
+    <ion-button shape="round"expand="block" color="chartreuse"class="startbutton" (click)="setcaseno(1)">Get Started  
+           <ion-icon name="arrow-forward-circle-outline"size="large"slot="end"></ion-icon></ion-button>
+
+</div>
+
+
+    <ion-card *ngIf="caseno==1">
+      <form [formGroup]="formdata" novalidate (submit)="getdata(formdata.value)">
+
+  <ion-card-header>
+    <ion-card-title>
+      <b >LOGIN</b>
+    </ion-card-title>
+    </ion-card-header>
+  <ion-card-content>
+   
+    <img src="assets\icon\images\login1.png"style="height:200px;width:250px;margin-top:10%;margin-left:15%;margin-right:auto;">
+    <ion-list>
+      
+    <ion-item fill="outline">
+      <ion-icon name="person-circle-outline"slot="start" ></ion-icon>
+      <ion-label position="floating">email Id</ion-label>
+      <ion-input formControlName="emailid" placeholder="Username/Email Id/PhoneNo." ></ion-input>
+     
+    
+    <div *ngIf="formdata.controls['emailid'].invalid && (formdata.controls['emailid'].dirty || formdata.controls['emailid'].touched)" class="alert alert-danger">
+      <div *ngIf="formdata.controls['emailid'].errors.required">
+      email  required.
+    </div>
+    <div *ngIf="formdata.controls['emailid'].errors.email">
+      invalid email 
+    </div>
+  </div>
+   
+    </ion-item>
+<br>
+   <ion-item fill="outline">
+    <ion-icon name="key-outline" slot="start"></ion-icon>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password" formControlName="password"  placeholder="Password"  ></ion-input>
+    <div *ngIf="formdata.controls['password'].invalid && (formdata.controls['password'].dirty || formdata.controls['emailid'].touched)" class="alert alert-danger">
+      <div *ngIf="formdata.controls['password'].errors.required">
+      password   required.
+    </div>
+    <div *ngIf="formdata.controls['password'].errors.minlength">
+      invalid password  
+    </div>
+  </div>
+ </ion-item>
+</ion-list>
+  <ion-button color="#92fc46"style="background:#92fc46;border-radius:20px;" shape="round" type="submit"expand="block">
+    <ion-icon name="log-in-outline"></ion-icon>
+ Login</ion-button>
+
+  <!--<ion-button color="danger" shape="round"  (click)="Forgot()"> <ion-icon name="help-circle-outline" ></ion-icon>
+    Forgot Password</ion-button>-->
+ <ion-button shape="round" type="button" color="blueViolet"style="background:blueViolet;border-radius:20px;"size="medium"expand="block"(click)="setcaseno(2)">Sign Up</ion-button>
+ <ion-text (click)="setcaseno(3)"style="margin-left:110px;color:red;"><ion-icon name="help-circle-outline"color="danger"></ion-icon>Forget Password</ion-text>
+</ion-card-content>
+</form>
+
+
+</ion-card>  
+
+
+
+
+
+    <ion-card *ngIf="caseno==2">
+       <ion-card-content>
+      <form [formGroup]="regdata"(submit)="datainput(regdata.value)">
+    <ion-list>
+      <BR>
+        <ion-thumbnail slot="center"class="thumbnail" >
+          <img alt="Silhouette of mountains" src="assets\icon\images\signup1.webp"/>
+        </ion-thumbnail>
+
+.
+      <ion-item>
+        <ion-input type="text"[clearInput]="true"placeholder="Full Name" formControlName="fname">
+          <div *ngIf="regdata.controls['fname'].invalid && (regdata.controls['fname'].dirty || regdata.controls['fname'].touched)" class="alert alert-danger">
+            <div *ngIf="regdata.controls['fname'].errors.required">
+            field required.
+          </div>
+          
+        </div>
+        </ion-input><ion-icon name="person-circle"slot="end"color="primary"></ion-icon>
+          </ion-item>
+     
+        <ion-item>      
+    <ion-input type="tel"[clearInput]="true"placeholder="Mobile Number" formControlName="mobile">  </ion-input><ion-icon name="call"slot="end"color="primary"></ion-icon>
+    <div *ngIf="regdata.controls['mobile'].invalid && (regdata.controls['mobile'].dirty || regdata.controls['mobile'].touched)" class="alert alert-danger">
+      <div *ngIf="regdata.controls['mobile'].errors.required">
+      mobile number  required.
+    </div>
+    <div *ngIf="regdata.controls['mobile'].errors.minlength">
+      invalid number  
+    </div>
+  </div>
+    
+  </ion-item>
+    
+    <ion-item>
+    <ion-input type="email"[clearInput]="true"placeholder="Email" formControlName="email">  </ion-input><ion-icon name="mail"slot="end"color="primary"></ion-icon>
+    <div *ngIf="regdata.controls['email'].invalid && (regdata.controls['email'].dirty || regdata.controls['email'].touched)" class="alert alert-danger">
+      <div *ngIf="regdata.controls['email'].errors.required">
+       email  required.
+    </div>
+  </div>
+  </ion-item>
+    <ion-item>
+    <ion-input type="text"[clearInput]="true"placeholder="Username" formControlName="uname">  </ion-input><ion-icon name="person"slot="end"color="primary"></ion-icon>
+    <div *ngIf="regdata.controls['uname'].invalid && (regdata.controls['uname'].dirty || regdata.controls['uname'].touched)" class="alert alert-danger">
+      <div *ngIf="regdata.controls['uname'].errors.required">
+       username  required.
+    </div> 
+  </div>   
+  </ion-item>
+    <ion-item>
+    <ion-input type="password"[clearInput]="true"placeholder="Password" formControlName="pass"></ion-input><ion-icon name="key"slot="end"color="primary"></ion-icon>
+    <div *ngIf="regdata.controls['pass'].invalid && (regdata.controls['pass'].dirty || regdata.controls['pass'].touched)" class="alert alert-danger">
+      <div *ngIf="regdata.controls['pass'].errors.required">
+       password  required.
+    </div>
+    <div *ngIf="regdata.controls['pass'].errors.minlength">
+      invalid password  
+    </div>
+    
+  </div>
+  </ion-item>
+    <ion-item>
+    <ion-input type="password"[clearInput]="true"placeholder="Confirm Password" formControlName="cpass"></ion-input><ion-icon name="shield-checkmark"slot="end"color="primary"></ion-icon>
+    <div *ngIf="regdata.controls['cpass'].invalid && (regdata.controls['cpass'].dirty || regdata.controls['cpass'].touched)" class="alert alert-danger">
+      <div *ngIf="regdata.controls['cpass'].errors.required">
+       confirmation  required.
+    </div>
+    <div *ngIf="regdata.controls['cpass'].errors.minlength">
+      invalid password  
+    </div>
+  </div>  
+  </ion-item>
+    <ion-grid>
+    <ion-row>
+      <br> 
+    <ion-col>
+    <ion-button shape="round" type="submit" color="tertiary"size="medium"expand="block">Register</ion-button>
+    <ion-button shape="round" type="reset" color="tertiary"size="medium"expand="block">reset</ion-button>
+    <ion-button shape="round" type="button" color="tertiary"size="medium"expand="block"(click)="setcaseno(1)">LogIn</ion-button>
+    <!--<ion-button shape="round" color="tertiary"size="medium"expand="block"(click)="senddata()">test</ion-button>-->
+  </ion-col>
+    </ion-row>   
+    </ion-grid>  
+    </ion-list>
+  </form>
+    </ion-card-content>
+   </ion-card>
+
+   <ion-card *ngIf="caseno==5">
+    <ion-card-content >
+      <form [formGroup]="otdata" (submit)="odata(otdata.value)">
+    <br>
+    <h4> Enter OTP Sent to your mobile number</h4>***458<br>
+    <ion-input type="password"formControlName="opass" placeholder="Enter 4 Digit OTP"maxlength="4">
+      <div *ngIf="otdata.controls['opass'].invalid && (otdata.controls['opass'].dirty || otdata.controls['opass'].touched)" class="alert alert-danger">
+        <div *ngIf="otdata.controls['opass'].errors.required">
+         otp  required.
+      </div>
+      <div *ngIf="otdata.controls['opass'].errors.minlength">
+        invalid otp  
+      </div>
+      
+    </div>
+   
+    </ion-input> <br>
+    <img src="assets\icon\images\OTP2.webp" width="200px">
+    <ion-button shape="round" type="submit" color="tertiary"size="medium"expand="block"(click)="setcaseno(1)" > VERIFY</ion-button> <br>
+    <a href="#">Resend OTP</a>
+    <br>
+  </form>
+    </ion-card-content>
+    </ion-card>
+   
+    <ion-card *ngIf="caseno==3">
+    
+
+ <ion-card-header  align="center">
+ <ion-icon name="alert-circle"size="large"></ion-icon>
+<ion-card-title color="primary"> Forgot Password </ion-card-title>    
+</ion-card-header>
+<br>
+ <ion-card-content>
+  <ion-list>
+    <img src="assets\icon\images\forget2.png" width="200px">
+    
+<ion-item fill="outline" >
+<ion-icon name="mail" slot="start" color="primary"></ion-icon>
+<form [formGroup]="sdata" (submit)="seg(sdata.value)">
+<ion-label position="floating">Enter Your E-mail/Phone Number</ion-label>
+<ion-input type="text" formControlName="p" [clearInput]="true" placeholder="E-mail or Phone number">                  
+</ion-input>
+<div *ngIf="sdata.controls['p'].invalid && (sdata.controls['p'].dirty || sdata.controls['p'].touched)" class="alert alert-danger">
+  <div *ngIf="sdata.controls['p'].errors.required">
+  emailid  required.
+</div>
+<div *ngIf="sdata.controls['p'].errors.email">
+  invalid email 
+</div>
+</div>
+</form>
+ </ion-item><br>
+<ion-button expand="block" type="submit" shape="round" color="primary" size="3">Next</ion-button>                           
+
+</ion-list>
+</ion-card-content>
+
+</ion-card>
+
+   
+<ion-card *ngIf="caseno==3">
+  <form [formGroup]="cdata" (submit)="sg(cdata.value)">
+<ion-card-header >
+ <ion-icon name="alert-circle" size="large"></ion-icon>
+ <ion-card-title > Account Recovery </ion-card-title>
+             
+</ion-card-header><br>
+<ion-card-content>
+ <ion-list >
+  <ion-text ><h2>An e-mail with verification code has been sent to *@gmail.com</h2></ion-text>            
+<ion-item fill="outline" >
+<ion-icon name="mail" slot="start" color="primary"></ion-icon>
+<ion-label position="floating">Enter Your Code</ion-label>
+<ion-input type="text" formControlName="num" [clearInput]="true"  placeholder="Enter your code"></ion-input>
+<div *ngIf="cdata.controls['num'].invalid && (cdata.controls['num'].dirty || cdata.controls['num'].touched)" class="alert alert-danger">
+      <div *ngIf="cdata.controls['num'].errors.required">
+    code  required.
+    </div>
+    <div *ngIf="cdata.controls['num'].errors.minlength">
+      invalid code 
+    </div>
+  </div>
+</ion-item><br/>           
+<ion-button expand="block"  type="submit" shape="round" color="primary" size="3"  >submit</ion-button>
+</ion-list>
+</ion-card-content>
+</form>
+</ion-card>  
+ <ion-card *ngIf="caseno==4">
+  <form [formGroup]="adata" (submit)="get(adata.value)">
+  <ion-card-header >
+ <ion-icon name="people-circle" size="large"  color="primary">
+</ion-icon>
+<ion-card-title color="primary" >Reset Password</ion-card-title>
+ <ion-card-subtitle></ion-card-subtitle>
+ </ion-card-header>
+  <ion-card-content>
+    <br>
+ <ion-list>
+<ion-item fill="outline" >
+ <ion-icon name="key" slot="start" color="primary"></ion-icon>
+ <ion-label position="floating">Enter New Password</ion-label>
+ <ion-input type="password" formControlName="enter" [clearInput]="true" placeholder="Enter New Password"></ion-input>
+ <div *ngIf="adata.controls['enter'].invalid && (adata.controls['enter'].dirty || adata.controls['enter'].touched)" class="alert alert-danger">
+  <div *ngIf="adata.controls['enter'].errors.required">
+  password   required.
+</div>
+<div *ngIf="adata.controls['enter'].errors.minlength">
+  invalid password  
+</div>
+</div>  
+</ion-item><hr/>
+  <ion-item fill="outline" >
+  <ion-icon name="key" slot="start" color="primary"></ion-icon>
+  <ion-label position="floating">Re-enter New Password</ion-label>
+<ion-input type="password" formControlName="re" [clearInput]="true"placeholder="Re-enter New Password"></ion-input>
+<div *ngIf="adata.controls['re'].invalid && (adata.controls['re'].dirty || adata.controls['re'].touched)" class="alert alert-danger">
+  <div *ngIf="adata.controls['re'].errors.required">
+  password  required.
+</div>
+<div *ngIf="adata.controls['re'].errors.minlength">
+  invalid password  
+</div>
+</div>  
+</ion-item>
+   <hr>
+   <br>
+   <ion-button type="submit" expand="block" shape="round" color="primary" size="medium" >Save Changes</ion-button>       
+  </ion-list>
+  </ion-card-content>
+</form>        
+  </ion-card>   
+
+
+
+</ion-content>

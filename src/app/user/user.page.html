@@ -1,0 +1,117 @@
+<ion-header>
+ 
+    <ion-toolbar>
+      <ion-title>Career Maker</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button><ion-icon name="arrow-back"></ion-icon></ion-back-button>
+      </ion-buttons>
+     
+        <ion-menu-button menuId="main-menu"slot="start"><ion-icon name="menu"style="color:#6907ea;"></ion-icon></ion-menu-button>
+      
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  
+<div class="container">
+<ion-card *ngIf="caseno==1">
+     
+       <ion-card-header>
+   
+         <b><h2>Search Courses</h2></b>
+   
+       </ion-card-header>
+       <ion-card-content>
+        <form [formGroup]="formdata" novalidate>
+           <ion-list>
+ 
+             <ion-item fill="outline" color="dark">
+               <ion-label position="floating">Interest </ion-label>
+               <ion-select formControlName="search">
+                <ion-select-option *ngFor="let class of courses">{{class.courses}}</ion-select-option>
+             
+              </ion-select>
+              </ion-item>
+              <ion-item>
+               <ion-button shape="round" color="#6f48a3" size="medium"expand="block"type="submit">Search</ion-button>
+              </ion-item>
+     
+           </ion-list>
+          
+   </form>
+       </ion-card-content>
+     </ion-card>
+  <ion-card *ngIf="caseno==2">
+  <ion-card-header>
+     
+    <h1><u>    QUESTIONNAIRE  </u></h1>
+  </ion-card-header>
+  <ion-card-content>
+    <form [formGroup]="userform"  (submit)="que(userform.value)">
+    <ion-list>
+      
+      <ion-item fill="outline"color="dark">
+        <ion-label position="floating"> Course Interested In </ion-label>
+        <ion-select formControlName="course">
+          <ion-select-option *ngFor="let Course of course_list">{{Course}}</ion-select-option>
+        </ion-select><ion-icon name="albums"slot="end"></ion-icon>
+      </ion-item>
+      <br>
+      <ion-item fill="outline"color="dark">
+
+        <ion-label position="floating"> Cities You Would Love To Be In Or Near</ion-label>
+        <ion-select formControlName="city" [multiple]="true">
+          <ion-select-option *ngFor="let City of city_list">{{City}}</ion-select-option>
+          
+        </ion-select><ion-icon name="location"slot="end"></ion-icon>
+      </ion-item><br>
+      <ion-item fill="outline"color="dark">
+        <ion-label position="floating">Campus Environment And Facilities</ion-label>
+        <ion-select formControlName="facilities" [multiple]="true">
+          <ion-select-option *ngFor="let Facilities of facility_list">{{Facilities}}</ion-select-option>
+          
+        </ion-select><ion-icon name="arrow-forward-circle"slot="end"></ion-icon>
+      </ion-item><br>
+      
+      <ion-item fill="outline"color="dark">
+        <ion-label position="floating">Mode Of Learning</ion-label>
+        <ion-select formControlName="mode">
+          <ion-select-option *ngFor="let Mode of mode_l">{{Mode}}</ion-select-option>
+         
+        </ion-select><ion-icon name="invert-mode" slot="end"></ion-icon>
+      </ion-item><br>
+      <ion-item fill="outline"color="dark">
+        <ion-label position="floating">Fees</ion-label>
+        <ion-select formControlName="fees">
+          <ion-select-option *ngFor="let Fees of fees_l">{{Fees}}</ion-select-option>
+        </ion-select><ion-icon name="cash" slot="end"></ion-icon>
+      </ion-item><br>
+      <ion-item fill="outline"color="dark">
+        <ion-label position="floating">Category</ion-label>
+        <ion-select formControlName="category">
+          <ion-select-option *ngFor="let Category of category_list">{{Category}}</ion-select-option>
+        </ion-select><ion-icon name="people" slot="end"></ion-icon>
+      </ion-item><br>
+      <ion-item fill="outline"color="dark">
+        <ion-label position="floating">Anything Else You Want?</ion-label>
+        <ion-textarea formControlName="add"> </ion-textarea><ion-icon name="chatbox" slot="end"></ion-icon>
+      </ion-item><br>
+      <ion-button shape="round" color="#6f48a3" type="submit"size="medium"expand="block"  >Add</ion-button>
+</ion-list>
+</form>
+</ion-card-content>
+ 
+</ion-card>
+     
+      
+
+
+
+
+</div>
+
+
+
+
+</ion-content>

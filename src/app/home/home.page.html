@@ -1,0 +1,486 @@
+<ion-header [translucent]="true">
+
+  <ion-toolbar>
+    <ion-title>
+      Career Counselling
+    </ion-title>
+    <ion-button slot="start" >
+      <ion-menu-button menuId="main-menu"></ion-menu-button>
+    </ion-button>
+  </ion-toolbar>
+ 
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-icon name="arrow-back-circle-outline"size="large"color="warning"(click)="back()"></ion-icon>
+
+ <div *ngIf="caseno==1">
+
+  
+  <ion-card>
+    <img src="assets\icon\images\adminlogo.webp">
+    
+    <ion-card-header>
+
+      ADD COLLEGE DETAILS
+
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="AddCollegeForm"(submit)="addcollege(AddCollegeForm.value)">
+      <ion-list>
+        <ion-item fill="outline"color="dark">
+          <ion-label position="floating">State</ion-label>
+          <ion-select formControlName="state">
+           <ion-select-option *ngFor="let class of classlist">{{class.state}}</ion-select-option>
+          </ion-select>
+
+        </ion-item>
+        <ion-item fill="outline"color="dark">
+          <ion-label position="floating">City</ion-label>
+          <ion-select  formControlName="city">
+            <ion-select-option>Chandigarh</ion-select-option>
+            <ion-select-option>Mohali</ion-select-option>
+          
+          </ion-select>
+        </ion-item>
+        <ion-item fill="outline"color="dark">
+
+          <ion-label position="floating">College Name</ion-label>
+          <ion-input type="text" formControlName="collegeName"></ion-input><ion-icon name="business-outline"slot="end"></ion-icon>
+        </ion-item>
+        
+        <ion-item fill="outline"color="dark">
+          <ion-label position="floating">Address</ion-label>
+          <ion-textarea formControlName="collegeAdd"> </ion-textarea>
+          <ion-icon name="location-outline"slot="end"></ion-icon>
+
+        </ion-item>
+        <ion-item fill="outline"color="dark">
+          <ion-label position="floating">Website Url</ion-label>
+          <ion-textarea formControlName="collegeurl"> </ion-textarea>
+          <ion-icon name="location-outline"slot="end"></ion-icon>
+
+        </ion-item>
+        <ion-item fill="outline"color="dark">
+          <ion-label position="floating">Contact Details</ion-label>
+          <ion-input type="tel"formControlName="contact"></ion-input><ion-icon name="call-outline"slot="end"></ion-icon>
+        </ion-item>
+      
+        <ion-item fill="outline"color="dark">
+          <ion-input type="file"id="fileInput"/><ion-icon name="document-outline"></ion-icon>
+          
+        </ion-item>
+        <ion-button shape="round" color="#6f48a3" type="submit"size="medium">Add</ion-button>
+          
+
+
+
+</ion-list>
+</form>
+    </ion-card-content>
+  </ion-card>
+  </div>
+ <div *ngIf="caseno==2">
+  
+  <ion-card >
+
+    <ion-card-header>ADD COURSE DETAILS</ion-card-header> 
+    <ion-card-content> 
+      <form [formGroup]="Addcourse"(submit)="addcourse(Addcourse.value)">
+      <ion-list>
+	    <ion-item fill="outline"color="dark">
+          <ion-label position="floating">Select College Name</ion-label>
+          <ion-select formControlName="collegeId">
+          <ion-select-option *ngFor="let class of collegelist">{{class.collegename}}</ion-select-option>
+          
+		  
+		  </ion-select>
+
+        </ion-item>
+    
+     
+        <ion-item fill="outline"color="dark">
+          <ion-label position="floating">Courses Name</ion-label>
+          <ion-input type="text"formControlName="coursename"></ion-input>
+          <ion-icon name="library-outline"slot="end"></ion-icon>
+        </ion-item>
+          <ion-item fill="outline"color="dark">
+          <ion-label>Duration</ion-label>
+		   <ion-input type="number"formControlName="duration"></ion-input>
+           <ion-icon name="hourglass-outline"slot="end"></ion-icon>
+        </ion-item>
+        <ion-item fill="outline"color="dark">
+          <ion-label position="floating">Number of Seats</ion-label>
+          <ion-input type="number"formControlName="seats"></ion-input>
+          <ion-icon name="people-outline"slot="end"></ion-icon>
+        </ion-item>
+        <ion-item fill="outline"color="dark">
+          <ion-label position="floating">Entrance Exam</ion-label>
+         <ion-input type="text"formControlName="entranceexam"></ion-input>
+
+        </ion-item>
+        
+        <ion-item fill="outline"color="dark">
+          <ion-label position="floating">Mode of Study</ion-label>
+		  <ion-input type="text"formControlName="mode"></ion-input>
+                  </ion-item>
+       
+        
+        <ion-item fill="outline"color="dark">
+        <ion-label position="floating">Eligibilty</ion-label>
+       <ion-input type="text"formControlName="eligibility"></ion-input>
+          <ion-icon name="newspaper-outline"slot="end"></ion-icon>
+        
+        </ion-item>
+        <ion-item fill="outline"color="dark">
+          <ion-label position="floating">Minimum Percentage </ion-label>
+        
+       <ion-input type="number"formControlName="minpercentage"></ion-input>
+                   
+                    <ion-icon name="newspaper-outline"slot="end"></ion-icon>
+          
+          </ion-item>
+
+
+        <ion-item fill="outline"color="dark">
+          <ion-label position="floating">Fees</ion-label>
+          <ion-input type="number"formControlName="fees"></ion-input>
+          <ion-icon name="cash-outline"slot="end"></ion-icon>
+          </ion-item>
+      </ion-list>
+      <ion-button shape="round"color="#6f48a3"type="submit"size="medium"expand="block">SUBMIT</ion-button>
+    </form>
+    </ion-card-content>
+  </ion-card>
+  </div>
+  
+ 
+<div *ngIf="caseno==0">
+    <ion-card *ngFor="let class of collegeview"class="card_view">
+    
+    <ion-card-header style="height:140px;">
+      <img alt="Silhouette of mountains"src="assets\icon\images\pu.jfif"expand="block"style="width:100%;border-radius:12px;border-style: double;">
+       <strong> {{class.collegename}}</strong><br>
+     <!--{{class.address}}&nbsp;<br>
+      {{class.city}}&nbsp;<br>
+      {{class.state}}<br>
+        <ion-icon name="call-outline"color="white"></ion-icon>{{class.contact}} <br>
+        <ion-icon name="mail-open-outline"color="white"></ion-icon>{{class.url}}
+     -->
+    </ion-card-header>
+  
+    <ion-card-content expand="block"> 
+      <!--<ion-grid>
+        <ion-row>
+          <ion-col size="1"></ion-col>
+          <ion-col size="2">
+      <ion-icon name="library-outline"size="large"> 
+      </ion-icon>
+      
+    </ion-col>
+    <ion-col size="2">
+      <ion-icon name="business-outline"size="large"></ion-icon>
+      </ion-col>
+      <ion-col size="2">
+      <ion-icon name="hourglass-outline"size="large"></ion-icon>
+      </ion-col>
+      <ion-col size="2">
+      <ion-icon name="newspaper-outline"size="large"></ion-icon>
+      </ion-col>
+      <ion-col size="2">
+      <ion-icon name="cash-outline"size="large"></ion-icon>
+      </ion-col>
+    </ion-row>
+   </ion-grid>-->
+
+           <ion-button shape="round"color="#6f48a3"type="button"size="medium"expand="block">Details</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</div>
+
+
+<div *ngIf="caseno==4">
+  
+
+  
+    <ion-card *ngFor="let class of courseview">
+      <img alt="Silhouette of mountains"src="assets\icon\images\CU.jpg"/>
+      <ion-card-header>
+     <ion-card-title color="white"><strong></strong></ion-card-title>
+     <ion-badge color="warning">FEES:{{class.fees}}</ion-badge>&nbsp;&nbsp;&nbsp;
+     <ion-badge color="warning">MODE:{{class.modeofstudy}}</ion-badge>
+        </ion-card-header>
+          <ion-card-content>
+        <ion-list>
+          <ion-item>
+            Course:{{class.course}}
+          </ion-item>
+          <ion-item>
+            Duration:{{class.duration}}years
+          </ion-item>
+          <ion-item>
+          Total Fees:Rs{{class.fees}}/-
+          </ion-item>
+         
+          
+        </ion-list>
+  
+             <ion-button shape="round"color="#6f48a3"type="button"size="medium"expand="block">Details</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+   
+    
+    <div *ngIf="caseno==5">
+     
+			 <!-- ADD CATEGORY-->
+    <ion-card>
+       <ion-card-header  id="t">
+        <ion-card-title size="large" color="white">Add Category</ion-card-title>
+      </ion-card-header>
+      <br>
+	  
+        <form [formGroup]="addcategory" (submit)="data(addcategory.value)">
+      <ion-item fill="outline">
+        <ion-label position="floating">New Category</ion-label>
+      <ion-input type="text" placeholder="New category" formControlName="cgory"></ion-input>
+      <div *ngIf="addcategory.controls['cgory'].invalid && (addcategory.controls['cgory'].dirty || addcategory.controls['cgory'].touched)" class="alert alert-danger">
+        <div *ngIf="addcategory.controls['cgory'].errors.required">
+           Category is Required
+        </div>
+      </div>
+      <ion-icon name="cube" slot="end"></ion-icon>
+    </ion-item>
+      <br>
+      <ion-item fill="outline">
+        <ion-label position="floating">Category Description</ion-label> 
+
+        <ion-textarea type="text" placeholder="Description" formControlName="des"></ion-textarea>
+        <div *ngIf="addcategory.controls['des'].invalid && (addcategory.controls['des'].dirty || addcategory.controls['des'].touched)" class="alert alert-danger">
+          <div *ngIf="addcategory.controls['des'].errors.required">
+            Description is Required
+          </div>
+        </div>
+        <ion-icon name="chatbox" slot="end"></ion-icon></ion-item>
+       <br>
+      
+    <ion-button shape="round" type="submit" color="#6f48a3">Add Category</ion-button>
+  </form>
+  
+    </ion-card>
+
+    <ion-card>
+	<ion-card-header color="danger"><ion-card-title size="large">Add Sub-Category</ion-card-title></ion-card-header><br>
+     <form [formGroup]="subcategory" (submit)="scategory(subcategory.value)"> 
+      <ion-item fill="outline">
+        <ion-select placeholder="Select Category" fill="outline" formControlName="scgory" >
+          <ion-select-option *ngFor="let class of categorylist">{{class.newcategory}}</ion-select-option>
+          
+        </ion-select>
+        
+        <div *ngIf="subcategory.controls['scgory'].invalid && (subcategory.controls['scgory'].dirty || subcategory.controls['scgory'].touched)" class="alert alert-danger">
+          <div *ngIf="subcategory.controls['scgory'].errors.required">
+             Category is Required
+          </div>
+        </div>
+      
+      <ion-icon name="cube" slot="end" ></ion-icon>
+    </ion-item> 
+    <br>
+      <ion-item fill="outline">
+        <ion-label position="floating">Sub-Category</ion-label>
+
+      <ion-input type="text" placeholder="Subcategory" formControlName="subcatgory" ></ion-input>
+      <div *ngIf="subcategory.controls['subcatgory'].invalid && (subcategory.controls['subcatgory'].dirty || subcategory.controls['subcatgory'].touched)" class="alert alert-danger">
+        <div *ngIf="subcategory.controls['subcatgory'].errors.required">
+          Subcategory is Required
+        </div>
+      </div>
+      <ion-icon name="cube" slot="end"></ion-icon>
+    </ion-item>
+      <br>
+    
+<ion-item>
+  <ion-button shape="round" type="submit" slot="start"(click)="back()" color="danger" >  Back   </ion-button>
+  <ion-button shape="round" type="submit" slot="end" color="#6f48a3"> Add Sub-category</ion-button><br><br></ion-item>
+    
+</form>
+
+    </ion-card>
+
+
+
+      </div>
+	  
+	                       <!-- ADD JOBS view-->
+	  
+	  
+      <div *ngIf="caseno==6">
+        		
+		<ion-card *ngFor="let class of jobdata">
+  <img alt="Silhouette of mountains"src="assets/image/ias.jpg"/>
+  <ion-card-header>
+    <ion-card-title><strong>{{class.jobcategory}}</strong></ion-card-title>
+ 
+ <ion-badge color="warning">Reviews</ion-badge>
+ 
+  </ion-card-header>
+  
+
+  <ion-card-content>
+      <ion-list>
+      <ion-item>
+        Job: {{class.Job}}
+      </ion-item>
+      <ion-item >
+        Eligibility:{{class.Eligibility}}
+      </ion-item>
+    <ion-item >
+      Salary:{{class.Salary}}
+      </ion-item>
+      <ion-item>
+        Age Limit:{{class.Agelimit}}
+      </ion-item>
+      
+          
+    </ion-list>
+
+         <ion-button shape="round"color="#6f48a3"type="button"size="medium"expand="block">Details</ion-button>
+        
+  </ion-card-content>
+  </ion-card>
+</div>
+
+
+
+<div *ngIf="caseno==7">
+
+<ion-card>
+    <ion-card-header><br>
+      ADD JOBS DETAILS
+<br></ion-card-header>
+    
+   
+    <ion-card-content>
+      <img alt="Silhouette of mountains"src="assets/images/jobs.jpg"/>
+    <form [formGroup]="jobdata" (submit)="jdata(jobdata.value)">
+        <ion-item fill="outline">
+          <ion-label position="floating" >Job Category</ion-label>
+          <ion-select formControlName="jc">
+            <ion-select-option *ngFor="let jobcategory of job_list">{{jobcategory}}</ion-select-option>
+            </ion-select>
+        </ion-item><br>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Eligibility Criteria</ion-label>
+          <ion-select formControlName="kc">
+             <ion-select-option *ngFor="let eligibilitycerteria of eli_list">{{eligibilitycerteria}}</ion-select-option>
+            </ion-select>
+        </ion-item><br>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Job Experience</ion-label>
+          <ion-select formControlName="lc">
+             <ion-select-option *ngFor="let jobexperience of experience">{{jobexperience}}</ion-select-option>
+          </ion-select>
+        </ion-item><br>
+
+          
+      
+         
+      <ion-item fill="outline">
+        <ion-label position="floating">Position</ion-label>
+        <ion-input type="tel"formControlName="mc"></ion-input>
+      <ion-icon name="ribbon-outline" slot="end"></ion-icon>
+    
+  </ion-item><br>
+   
+    <ion-item fill="outline">
+      <ion-label position="floating">Pay Rate</ion-label>
+      <ion-icon name="wallet-outline" slot="end"></ion-icon>
+      <ion-input type="tel"formControlName="nc"></ion-input>
+    
+    </ion-item><br>
+        
+    <ion-item fill="outline">
+          <ion-label position="floating">State</ion-label>  
+          <ion-select formControlName="oc">
+            <ion-select-option *ngFor="let state of state">{{state}}</ion-select-option>
+</ion-select>
+          </ion-item><br>
+            <ion-item fill="outline">
+              <ion-label position="floating">City</ion-label>
+              <ion-select formControlName="pc">
+                <ion-select-option *ngFor="let city of city_list">{{city}}</ion-select-option>
+           </ion-select>
+
+          
+        </ion-item><br>
+        <ion-item fill="outline">
+          <ion-label position="floating">Address</ion-label> 
+          <ion-icon name="location-outline" slot="end"></ion-icon>
+          <ion-input type="tel"formControlName="qc"></ion-input>
+          <ion-textarea ></ion-textarea>
+          
+        </ion-item><br>
+         
+        <ion-item fill="outline">
+          <ion-label position="floating">Contact Details</ion-label>
+          <ion-icon name="call-outline" slot="end"></ion-icon>
+          <ion-input type="tel"formControlName="rc"></ion-input>
+        
+         </ion-item><br>
+         <ion-button  color="#6f48a3" type="submit">Submit</ion-button>
+        <ion-button  type="reset"color="#6f48a3">Reset</ion-button>
+        </form>
+    </ion-card-content>
+    
+      </ion-card>
+</div>
+<!--search  
+<ion-card>
+     
+  <ion-card-header>
+
+    <b><h2>Search Courses</h2></b>
+
+  </ion-card-header>
+  <ion-card-content>
+    <form [formGroup]="formdata" novalidate (submit)="getdata(formdata.value)">
+      <ion-list>
+
+        <ion-item fill="outline" color="dark">
+          <ion-label position="floating">Interest</ion-label>
+          <ion-select formControlName="search">
+           <ion-select-option>Computer Science</ion-select-option>
+           <ion-select-option>Agriculture</ion-select-option>
+           <ion-select-option>Engineering</ion-select-option>
+           <ion-select-option>Nursing</ion-select-option>
+           <ion-select-option>Architecture</ion-select-option>
+         </ion-select>
+         </ion-item>
+         <ion-item>
+          <ion-button shape="round" color="#6f48a3" type="submit"size="medium"expand="block"click="search1()">Search</ion-button>       
+        
+         </ion-item>
+
+      </ion-list>
+</form>
+  </ion-card-content>
+</ion-card>
+-->
+
+                           <!-- questionnarie  -->
+
+
+</div>
+</ion-content>

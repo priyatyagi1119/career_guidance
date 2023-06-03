@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>CareerGuidence</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button><ion-icon name="arrow-back"></ion-icon></ion-back-button>
+    </ion-buttons>
+      <ion-menu-button menuId="main-menu"slot="start"><ion-icon name="menu"style="color:#6907ea;"></ion-icon></ion-menu-button>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container"*ngIf="caseno==0">
+<ion-slides [options]="option">
+    <ion-slide class="bg">
+        <ion-card class="slide_card">
+      <img src="assets\icon\images\slide1.jpg"class="slide_image">
+</ion-card>
+    </ion-slide>
+    <ion-slide class="bg">
+            <ion-card class="slide_card">
+      <img src="assets\icon\images\slide2.jpg"class="slide_image">
+</ion-card>
+    </ion-slide>
+
+   
+  <ion-slide class="bg">
+    
+      <ion-card class="slide_card">
+      <img src="assets\icon\images\slide4.jpg"class="slide_image">
+  </ion-card>
+    </ion-slide>
+   
+  </ion-slides>
+  <ion-searchbar show-cancel-button="focus" placeholder="Search"class="custom"></ion-searchbar>
+
+  <ion-grid>
+    <ion-row>
+    <ion-col  id="col1">
+      
+        <ion-avatar style=" border-style: double;border-color:  #6f48a3;"(click)="next_page(0)"><ion-img src="assets\icon\images\addcol.jpg"></ion-img></ion-avatar>Colleges</ion-col>
+    <ion-col id="col1"><ion-avatar style=" border-style: double;border-color:  #6f48a3;"(click)="next_page(4)"><ion-img src="assets\icon\images\addcor.jpg"></ion-img></ion-avatar><label>&nbsp;Courses</label></ion-col>
+    <ion-col  id="col1"><ion-avatar style=" border-style: double;border-color:  #6f48a3;"(click)="next_page(6)"><ion-img src="assets\icon\images\addcol.jpg"></ion-img></ion-avatar><label>&nbsp;&nbsp;&nbsp;Jobs</label></ion-col>
+     <ion-col id="col1"><ion-avatar style=" border-style: double;border-color:  #6f48a3;"(click)="next_page1(2)"><ion-img src="assets\icon\images\cate.webp"></ion-img></ion-avatar><label>&nbsp;&nbsp;&nbsp;Quiz</label></ion-col>
+</ion-row>
+</ion-grid>
+<ion-grid>
+  <ion-row>
+    <ion-col size="6"*ngFor="let output of clgdata">
+      <ion-card class="view_card">
+        <img alt="Silhouette of mountains" src="assets\icon\images\slide1.jpg" />
+      
+        <ion-card-content>
+          <ion-badge>{{output.collegename}}</ion-badge>
+          <ion-badge>{{output.course}}</ion-badge>
+          <ion-badge>{{output.fees}}</ion-badge>
+          <ion-badge>{{output.seats}}</ion-badge>
+         <ion-button size="small">More..</ion-button>
+        </ion-card-content>
+      </ion-card>
+  </ion-col>
+ 
+  </ion-row>
+</ion-grid>
+
+   </div>
+
+
+
+</ion-content>

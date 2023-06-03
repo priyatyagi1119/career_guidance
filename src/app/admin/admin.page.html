@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  <ion-card *ngIf="casenum==1">
+    <ion-card-header>
+  <ion-card-title >Admin Login</ion-card-title>
+</ion-card-header>
+<ion-card-content>
+  <form [formGroup]="userform" novalidate (submit)="userdata(userform.value)">
+  <ion-list>
+<ion-item>
+ <ion-input type="email"[clearInput]="true"placeholder="Email" formControlName="em">  </ion-input><ion-icon name="mail"slot="end"></ion-icon>
+ <div *ngIf="userform.controls['em'].invalid && (userform.controls['em'].dirty || userform.controls['em'].touched)" class="alert alert-danger">
+  <div *ngIf="userform.controls['em'].errors.required">
+   Email Id is required.
+</div>
+<div *ngIf="userform.controls['em'].errors.email">
+ Invalid
+</div>
+</div>
+</ion-item>
+ <ion-item>
+  <ion-input type="password"[clearInput]="true"placeholder="Password"formControlName="pass"></ion-input><ion-icon name="key"slot="end"></ion-icon>
+  <div *ngIf="userform.controls['pass'].invalid && (userform.controls['pass'].dirty || userform.controls['pass'].touched)" class="alert alert-danger">
+    <div *ngIf="userform.controls['pass'].errors.required">
+     Password  is required.
+  </div>
+  <div *ngIf="userform.controls['pass'].errors.minlength">
+    Password must contain 5 digits.
+ </div>
+</div>
+</ion-item>  
+<ion-grid>
+<ion-row>
+<ion-col>
+<ion-button shape="round" size="medium"color="blueViolet"style="background:blueViolet;border-radius:20px;"size="medium"expand="block" type="submit">Sign In</ion-button>
+</ion-col>
+</ion-row>   
+</ion-grid>  
+</ion-list>
+</form>
+</ion-card-content> 
+</ion-card>
+  <ion-card *ngIf="casenum==2">
+    <ion-card-content>
+<ion-row>
+  <ion-col size="3">
+        <ion-avatar> <img alt="Silhouette of mountains" src="assets\icon\images\addcol.jpg" />
+        </ion-avatar> </ion-col>
+        <ion-col size="5"><h1>Hii,Admin</h1></ion-col>
+        </ion-row>
+    </ion-card-content>
+    <ion-card>
+    <ion-card-header>
+      <ion-card-title>ADD DETAILS</ion-card-title>
+      <ion-card-subtitle> Select Options</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item (click)="cases(1)">
+          <ion-thumbnail slot="start">
+           <ion-avatar> <img alt="Silhouette of mountains" src="assets\icon\images\addcol.jpg" /></ion-avatar>
+          </ion-thumbnail>
+          <ion-label>Colleges Details</ion-label>
+        </ion-item>
+        <ion-item (click)="cases(2)">
+          <ion-thumbnail slot="start">
+           <ion-avatar> 
+            <img alt="Silhouette of mountains" src="assets\icon\images\addcor.jpg" />
+           </ion-avatar> 
+          </ion-thumbnail>
+          <ion-label>Courses Details</ion-label>
+        </ion-item>
+        <ion-item (click)="cases(7)">
+          <ion-thumbnail slot="start">
+           <ion-avatar> 
+            <img alt="Silhouette of mountains" src="assets\icon\images\cate.webp" />
+           </ion-avatar> 
+          </ion-thumbnail>
+          <ion-label>Jobs Details</ion-label>
+        </ion-item>
+        <ion-item (click)="cases(5)">
+          <ion-thumbnail slot="start">
+           <ion-avatar> 
+            <img alt="Silhouette of mountains" src="assets\icon\images\cate.webp" />
+           </ion-avatar> 
+          </ion-thumbnail>
+          <ion-label>Streams and Courses</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-card>
+</ion-content>
